@@ -8,53 +8,76 @@ Dockerfile
 docker-compose.yml
 .dockerignore
 
+# Environment variables and secrets
+.env
+.secrets.toml
+
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
 *.pyd
-.Python
-env/
-venv/
-.env/
-.venv/
-pip-log.txt
-pip-delete-this-directory.txt
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.log
-.pytest_cache/
+build/
+dist/
+*.egg-info/
+*.egg
 
-# IDE
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Package managers and tools
+.ruff_cache/
+.mypy_cache/
+uv.lock
+
+# pyenv
+.python-version
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Application-specific
+exports/
+vnstock_cache/
+charts/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+
+# Logs
+*.log
+logs/
+
+# IDEs and editors
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# OS
+# OS files
 .DS_Store
-.DS_Store?
 ._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
 
-# Application specific
-exports/
-*.egg-info/
-build/
-dist/
+# Temporary files
+*.tmp
+*.temp
+.cache/
+*.db
+*.wal
 
-# Claude files
-.claude/
-CLAUDE.md
+# Security
+*.pem
+*.key
+*.crt
 
 # Development files
-uv.lock
+.claude/
+CLAUDE.md
+DOCKER.md
+README.md
