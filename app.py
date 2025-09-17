@@ -518,7 +518,10 @@ if "dataframes" in st.session_state:
         """
         # Create unique key based on current dataframes
         stock_df_count = (
-            len(st.session_state.dataframes) if "dataframes" in st.session_state else 0
+            len(st.session_state.dataframes)
+            if "dataframes" in st.session_state
+            and st.session_state.dataframes is not None
+            else 0
         )
         uploaded_df_count = len(st.session_state.uploaded_dataframes)
         current_key = f"agent_{stock_df_count}_{uploaded_df_count}"
@@ -533,7 +536,7 @@ if "dataframes" in st.session_state:
 
         # Create new agent with all dataframes
         all_dataframes = []
-        if "dataframes" in st.session_state:
+        if "dataframes" in st.session_state and st.session_state.dataframes is not None:
             all_dataframes.extend(list(st.session_state.dataframes.values()))
         all_dataframes.extend(st.session_state.uploaded_dataframes)
 
@@ -580,6 +583,10 @@ if "dataframes" in st.session_state:
                 message_data = process_agent_response(agent, question)
                 st.session_state.messages.append(message_data)
                 st.rerun()
+            else:
+                st.warning(
+                    "⚠️ No data loaded yet. Please click 'Analyze Stock' first to load financial data."
+                )
 
     with col2:
         if st.button("Dividend Schedule"):
@@ -590,6 +597,10 @@ if "dataframes" in st.session_state:
                 message_data = process_agent_response(agent, question)
                 st.session_state.messages.append(message_data)
                 st.rerun()
+            else:
+                st.warning(
+                    "⚠️ No data loaded yet. Please click 'Analyze Stock' first to load financial data."
+                )
 
     with col3:
         if st.button("Debt Analysis"):
@@ -600,6 +611,10 @@ if "dataframes" in st.session_state:
                 message_data = process_agent_response(agent, question)
                 st.session_state.messages.append(message_data)
                 st.rerun()
+            else:
+                st.warning(
+                    "⚠️ No data loaded yet. Please click 'Analyze Stock' first to load financial data."
+                )
 
     # Chat Interface
     st.subheader("Chat with AI Analyst")
@@ -719,7 +734,10 @@ if "dataframes" in st.session_state:
     col1, col2 = st.columns(2)
     with col1:
         if st.button("Show Table", use_container_width=True):
-            if "display_dataframes" in st.session_state:
+            if (
+                "display_dataframes" in st.session_state
+                and st.session_state.display_dataframes is not None
+            ):
                 with st.expander("Financial Data"):
                     for name, df in st.session_state.display_dataframes.items():
                         st.subheader(name)
@@ -740,5 +758,3 @@ st.markdown(
 st.markdown(
     "Built with [Streamlit](https://streamlit.io), [PandasAI](https://pandas-ai.com), and [Vnstock](https://github.com/thinh-vu/vnstock) by [Thinh Vu](https://github.com/thinh-vu)"
 )
-
-
