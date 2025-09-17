@@ -1,0 +1,13 @@
+# Environment variables
+.env
+.secrets.toml
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Package files
+*.egg-info/
+
+# macOS
+.DS_Store

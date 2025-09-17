@@ -1,0 +1,2 @@
+[console_scripts]
+standalone-finbro-gpt = standalone_bro:main
