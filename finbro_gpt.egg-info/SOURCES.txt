@@ -1,8 +1,0 @@
-README.md
-pyproject.toml
-finbro_gpt.egg-info/PKG-INFO
-finbro_gpt.egg-info/SOURCES.txt
-finbro_gpt.egg-info/dependency_links.txt
-finbro_gpt.egg-info/entry_points.txt
-finbro_gpt.egg-info/requires.txt
-finbro_gpt.egg-info/top_level.txt
