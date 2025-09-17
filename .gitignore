@@ -58,7 +58,8 @@ Thumbs.db
 *.tmp
 *.temp
 .cache/
-
+*.db
+*.wal
 # Security
 *.pem
 *.key
