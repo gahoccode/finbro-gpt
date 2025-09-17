@@ -42,7 +42,7 @@ Repository = "https://github.com/gahoccode/finbro-gpt"
 Issues = "https://github.com/gahoccode/finbro-gpt/issues"
 
 [project.scripts]
-standalone-finbro-gpt = "standalone_bro:main"
+finbro-gpt = "streamlit run app.py"
 
 [tool.ruff]
 # Set the maximum line length to 88

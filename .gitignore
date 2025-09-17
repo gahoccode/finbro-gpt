@@ -1,13 +1,65 @@
-# Environment variables
+# Environment variables and secrets
 .env
 .secrets.toml
 
-# Python cache
+# Python
 __pycache__/
 *.py[cod]
-
-# Package files
+*.pyo
+*.pyd
+build/
+dist/
 *.egg-info/
+*.egg
 
-# macOS
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Package managers and tools
+.ruff_cache/
+.mypy_cache/
+uv.lock
+
+# pyenv
+.python-version
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Application-specific
+exports/
+vnstock_cache/
+charts/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+
+# Logs
+*.log
+logs/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
 .DS_Store
+._*
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Security
+*.pem
+*.key
+*.crt

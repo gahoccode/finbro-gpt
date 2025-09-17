@@ -1,8 +1,0 @@
-README.md
-pyproject.toml
-standalone_finance_bro.egg-info/PKG-INFO
-standalone_finance_bro.egg-info/SOURCES.txt
-standalone_finance_bro.egg-info/dependency_links.txt
-standalone_finance_bro.egg-info/entry_points.txt
-standalone_finance_bro.egg-info/requires.txt
-standalone_finance_bro.egg-info/top_level.txt

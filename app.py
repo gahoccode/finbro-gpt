@@ -10,8 +10,7 @@ from pandasai import Agent
 from pandasai.llm import OpenAI
 import glob
 import matplotlib.pyplot as plt
-import mplfinance as mpf
-import altair as alt
+
 
 warnings.filterwarnings("ignore")
 
@@ -742,3 +741,5 @@ st.markdown(
 st.markdown(
     "Built with [Streamlit](https://streamlit.io), [PandasAI](https://pandas-ai.com), and [Vnstock](https://github.com/thinh-vu/vnstock) by [Thinh Vu](https://github.com/thinh-vu)"
 )
+
+

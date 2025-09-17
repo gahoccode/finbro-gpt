@@ -1,6 +1,9 @@
-# Standalone Finance Bro
+# Finbro-GPT
 
-A streamlined, standalone version of the Finance Bro AI chat interface for Vietnamese stock market analysis.
+[![Docker Build](https://github.com/gahoccode/finbro-gpt/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/gahoccode/finbro-gpt/actions/workflows/docker-publish.yml)
+[![Docker Image](https://ghcr-badge.deta.dev/gahoccode/finbro-gpt/latest_tag?trim=major&label=latest)](https://github.com/gahoccode/finbro-gpt/pkgs/container/finbro-gpt)
+
+A standalone AI-powered financial analysis tool for Vietnamese stock market analysis.
 
 ## Features
 
@@ -10,6 +13,8 @@ A streamlined, standalone version of the Finance Bro AI chat interface for Vietn
 - 🎯 Stock symbol selection and configuration
 - 🔑 Direct OpenAI API key integration
 - 🎨 Professional finance theme styling
+- 🐳 Docker support with multi-platform builds
+- 🚀 Automated CI/CD with GitHub Actions
 
 ## Requirements
 
@@ -18,13 +23,57 @@ A streamlined, standalone version of the Finance Bro AI chat interface for Vietn
 
 ## Installation
 
-1. Clone or extract the standalone-bro directory
+### Method 1: Docker (Recommended)
+
+```bash
+# Pull and run from GitHub Container Registry
+docker run -d \
+  --name finbro-gpt \
+  -p 8501:8501 \
+  -e OPENAI_API_KEY=your-openai-api-key \
+  ghcr.io/gahoccode/finbro-gpt:latest
+```
+
+### Method 2: Docker Compose
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/gahoccode/finbro-gpt.git
+   cd finbro-gpt
+   ```
+
+2. Set up environment:
+   ```bash
+   cp .env.example .env
+   # Edit .env with your OpenAI API key
+   ```
+
+3. Run with docker-compose:
+   ```bash
+   docker-compose up --build
+   ```
+
+### Method 3: Local Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/gahoccode/finbro-gpt.git
+   cd finbro-gpt
+   ```
+
 2. Install dependencies:
    ```bash
    pip install -r requirements.txt
+   # or using pyproject.toml
+   pip install -e .
    ```
 
 ## Usage
+
+### For Docker Users
+After running the Docker container, open your browser and navigate to `http://localhost:8501`
+
+### For Local Installation
 
 1. Set your OpenAI API key:
    ```bash
@@ -34,18 +83,12 @@ A streamlined, standalone version of the Finance Bro AI chat interface for Vietn
 
 2. Run the application:
    ```bash
-   streamlit run standalone_bro.py
+   streamlit run app.py
+   # or using the configured script (after pip install -e .)
+   finbro-gpt
    ```
 
 3. Open your browser and navigate to `http://localhost:8501`
-
-## Key Differences from Main App
-
-- **No authentication required** - Works standalone without Google OAuth
-- **Self-contained** - All dependencies inlined, no external module imports
-- **Direct API key input** - Enter OpenAI API key in the sidebar
-- **Simplified stock selection** - Choose from available Vietnamese stock symbols
-- **Essential features only** - Focused on AI chat analysis without extra pages
 
 ## Configuration
 
@@ -65,13 +108,22 @@ The app includes pre-loaded sample questions for common financial analysis:
 ## File Structure
 
 ```
-standalone-bro/
-├── standalone_bro.py      # Main application
-├── requirements.txt       # Dependencies
+finbro-gpt/
+├── app.py                    # Main application
+├── pyproject.toml            # Project configuration
+├── requirements.txt          # Dependencies
+├── Dockerfile               # Docker configuration
+├── docker-compose.yml       # Docker Compose setup
+├── .env.example             # Environment template
+├── .github/
+│   └── workflows/
+│       └── docker-publish.yml # CI/CD workflow
 ├── .streamlit/
-│   └── config.toml       # Theme configuration
-├── exports/charts/       # Generated charts
-└── README.md             # This file
+│   └── config.toml          # Theme configuration
+├── exports/charts/          # Generated charts
+├── CLAUDE.md               # Development guide
+├── DOCKER.md               # Docker deployment guide
+└── README.md               # This file
 ```
 
 ## Dependencies
@@ -83,8 +135,28 @@ standalone-bro/
 - `openai>=1.61.0` - LLM integration
 - `altair>=5.5.0` - Visualizations
 
+## Deployment
+
+### Pre-built Images
+Pre-built Docker images are automatically published to GitHub Container Registry:
+- `ghcr.io/gahoccode/finbro-gpt:latest` - Latest stable version
+- `ghcr.io/gahoccode/finbro-gpt:v1.0.0` - Specific version tags
+
+### Supported Architectures
+- linux/amd64 (Intel/AMD)
+- linux/arm64 (Apple Silicon, ARM servers)
+
+### Environment Variables
+- `OPENAI_API_KEY` - Required for AI functionality
+- `OPENAI_MODEL` - Optional model selection (default: gpt-4o-mini)
+
+## Development
+
+See [CLAUDE.md](CLAUDE.md) for detailed development instructions and [DOCKER.md](DOCKER.md) for Docker deployment options.
+
 ## Notes
 
 - Requires internet connection for Vnstock API and OpenAI services
 - All financial data is fetched in real-time, no local database
-- Charts are temporarily saved and displayed in the chat interface
+- Charts are automatically generated and displayed in the chat interface
+- Multi-platform Docker support for various architectures
