@@ -25,13 +25,60 @@ A standalone AI-powered financial analysis tool for Vietnamese stock market anal
 
 ### Method 1: Docker (Recommended)
 
+#### Step 1: Pull the image
 ```bash
-# Pull and run from GitHub Container Registry
+docker pull ghcr.io/gahoccode/finbro-gpt:latest
+```
+
+#### Step 2: Run the container
+
+**Mac/Linux:**
+```bash
+# Run with volume mounting to persist charts
 docker run -d \
   --name finbro-gpt \
   -p 8501:8501 \
   -e OPENAI_API_KEY=your-openai-api-key \
+  -v $(pwd)/exports:/app/exports \
   ghcr.io/gahoccode/finbro-gpt:latest
+```
+
+**Windows (Command Prompt):**
+```cmd
+REM Run with volume mounting to persist charts
+docker run -d ^
+  --name finbro-gpt ^
+  -p 8501:8501 ^
+  -e OPENAI_API_KEY=your-openai-api-key ^
+  -v %cd%\exports:/app/exports ^
+  ghcr.io/gahoccode/finbro-gpt:latest
+```
+
+**Windows (PowerShell):**
+```powershell
+# Run with volume mounting to persist charts
+docker run -d `
+  --name finbro-gpt `
+  -p 8501:8501 `
+  -e OPENAI_API_KEY=your-openai-api-key `
+  -v ${PWD}/exports:/app/exports `
+  ghcr.io/gahoccode/finbro-gpt:latest
+```
+
+#### Container Management
+
+```bash
+# View logs
+docker logs finbro-gpt
+
+# Stop container
+docker stop finbro-gpt
+
+# Start container
+docker start finbro-gpt
+
+# Remove container
+docker rm finbro-gpt
 ```
 
 ### Method 2: Docker Compose
@@ -95,15 +142,6 @@ After running the Docker container, open your browser and navigate to `http://lo
 - **Data Sources**: VCI (default) or TCBS for stock data
 - **Period**: Annual or quarterly financial data
 - **Chart Export**: Charts saved to `exports/charts/` directory
-
-## Sample Questions
-
-The app includes pre-loaded sample questions for common financial analysis:
-- ROIC analysis
-- Dividend schedule analysis
-- Debt-to-equity ratios
-- Profitability trends
-- And more...
 
 ## File Structure
 

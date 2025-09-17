@@ -9,7 +9,6 @@ import warnings
 from pandasai import Agent
 from pandasai.llm import OpenAI
 import glob
-import matplotlib.pyplot as plt
 
 
 warnings.filterwarnings("ignore")
