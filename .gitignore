@@ -64,3 +64,6 @@ Thumbs.db
 *.pem
 *.key
 *.crt
+
+# AI
+.claude/
