@@ -26,6 +26,7 @@ A standalone AI-powered financial analysis tool for Vietnamese stock market anal
 ### Method 1: Docker (Recommended)
 
 #### Step 1: Pull the image
+
 ```bash
 docker pull ghcr.io/gahoccode/finbro-gpt:latest
 ```
@@ -33,6 +34,7 @@ docker pull ghcr.io/gahoccode/finbro-gpt:latest
 #### Step 2: Run the container
 
 **Mac/Linux:**
+
 ```bash
 # Run with volume mounting to persist charts
 docker run -d \
@@ -44,6 +46,7 @@ docker run -d \
 ```
 
 **Windows (Command Prompt):**
+
 ```cmd
 REM Run with volume mounting to persist charts
 docker run -d ^
@@ -55,6 +58,7 @@ docker run -d ^
 ```
 
 **Windows (PowerShell):**
+
 ```powershell
 # Run with volume mounting to persist charts
 docker run -d `
@@ -84,12 +88,14 @@ docker rm finbro-gpt
 ### Method 2: Docker Compose
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/gahoccode/finbro-gpt.git
    cd finbro-gpt
    ```
 
 2. Set up environment:
+
    ```bash
    cp .env.example .env
    # Edit .env with your OpenAI API key
@@ -103,6 +109,7 @@ docker rm finbro-gpt
 ### Method 3: Local Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/gahoccode/finbro-gpt.git
    cd finbro-gpt
@@ -118,17 +125,21 @@ docker rm finbro-gpt
 ## Usage
 
 ### For Docker Users
+
 After running the Docker container, open your browser and navigate to `http://localhost:8501`
 
 ### For Local Installation
 
 1. Set your OpenAI API key:
+
    ```bash
    export OPENAI_API_KEY="your-api-key-here"
    ```
+
    Or enter it directly in the app interface
 
 2. Run the application:
+
    ```bash
    streamlit run app.py
    # or using the configured script (after pip install -e .)
@@ -166,25 +177,29 @@ finbro-gpt/
 
 ## Dependencies
 
-- `streamlit==1.47.0` - Web framework
+- `streamlit>=1.47.0` - Web framework
 - `pandas==1.5.3` - Data processing
 - `pandasai==2.3.0` - AI analysis
-- `vnstock==3.2.5` - Vietnamese stock data
+- `vnstock>=3.4.0` - Vietnamese stock data
 - `openai>=1.61.0` - LLM integration
 - `altair>=5.5.0` - Visualizations
 
 ## Deployment
 
 ### Pre-built Images
+
 Pre-built Docker images are automatically published to GitHub Container Registry:
+
 - `ghcr.io/gahoccode/finbro-gpt:latest` - Latest stable version
 - `ghcr.io/gahoccode/finbro-gpt:v1.0.0` - Specific version tags
 
 ### Supported Architectures
+
 - linux/amd64 (Intel/AMD)
 - linux/arm64 (Apple Silicon, ARM servers)
 
 ### Environment Variables
+
 - `OPENAI_API_KEY` - Required for AI functionality
 - `OPENAI_MODEL` - Optional model selection (default: gpt-4o-mini)
 
