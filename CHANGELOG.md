@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Added `VNSTOCK_API_KEY` passthrough in `docker-compose.yml` so Docker deployments can authenticate with vnstock API
+
 ## [1.0.0] - 2024-01-17
 
 ### Added
