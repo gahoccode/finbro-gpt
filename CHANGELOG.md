@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Simplified Dockerfile from multi-stage to single-stage build — all dependencies ship pre-built wheels, no gcc/g++ compilation needed
+- Removed virtual environment layer inside container (container itself provides isolation)
+- Removed `--platform=linux/amd64` hardcoding to enable proper multi-arch builds
+- Fixed `as` → `AS` casing warning (FromAsCasing)
+
 ### Fixed
 - Added `VNSTOCK_API_KEY` passthrough in `docker-compose.yml` so Docker deployments can authenticate with vnstock API
 
