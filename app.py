@@ -11,7 +11,23 @@ from pandasai.llm import OpenAI
 import glob
 
 
+from vnstock import register_user
+
 warnings.filterwarnings("ignore")
+
+# Environment variable names
+VNSTOCK_API_KEY_ENV = "VNSTOCK_API_KEY"
+
+# Setup Vnstock API key if available
+_vnstock_api_key = os.environ.get(VNSTOCK_API_KEY_ENV, "")
+if _vnstock_api_key:
+    try:
+        register_user(_vnstock_api_key)
+        if "vnstock_registered" not in st.session_state:
+            st.session_state.vnstock_registered = True
+    except Exception:
+        # Silently fail if registration doesn't work - vnstock will work in free tier
+        pass
 
 # Sample questions for AI analysis (inlined from src.core.config)
 SAMPLE_QUESTIONS = [
@@ -316,10 +332,10 @@ with st.sidebar:
 
     period = st.selectbox("Period:", options=["year", "quarter"], index=0)
 
-    source = st.selectbox("Data Source:", options=["VCI", "TCBS"], index=0)
+    source = st.selectbox("Data Source:", options=["VCI"], index=0)
 
     company_source = st.selectbox(
-        "Company Data Source:", options=["TCBS", "VCI"], index=0
+        "Company Data Source:", options=["KBS", "VCI"], index=0
     )
 
     analyze_button = st.button(
@@ -402,7 +418,7 @@ if analyze_button or (
                 Ratio_raw, separator="_", handle_duplicates=True, drop_levels=0
             )
 
-            dividend_schedule = company.dividends()
+            dividend_schedule = pd.DataFrame()
 
             # Store original dataframes for display (keep original column names)
             st.session_state.display_dataframes = {

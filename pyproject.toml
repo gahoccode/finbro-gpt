@@ -16,11 +16,9 @@ classifiers = [
 ]
 dependencies = [
     "streamlit==1.47.0",
-    "pandas==1.5.3",
-    "numpy>=1.26.4,<2.0.0",
-    "pandasai==2.3.0",
+    "pandasai>=2.3.0",
     "openai>=1.61.0",
-    "vnstock==3.2.5",
+    "vnstock>=3.4.0",
     "altair>=5.5.0",
     "vl-convert-python>=1.6.0",
     "python-dotenv==1.0.1",
@@ -40,9 +38,6 @@ dev = [
 Homepage = "https://github.com/gahoccode/finbro-gpt"
 Repository = "https://github.com/gahoccode/finbro-gpt"
 Issues = "https://github.com/gahoccode/finbro-gpt/issues"
-
-[project.scripts]
-finbro-gpt = "streamlit run app.py"
 
 [tool.ruff]
 # Set the maximum line length to 88
@@ -92,7 +87,7 @@ select = [
     "F822",  # Undefined name in __all__
     "F823",  # Local variable referenced before assignment
     "F841",  # Local variable assigned but never used
-    
+
     # pycodestyle - Python style issues
     "E101",  # Indentation contains mixed spaces and tabs
     "W291",  # Trailing whitespace
