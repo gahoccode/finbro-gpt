@@ -20,6 +20,7 @@ A standalone AI-powered financial analysis tool for Vietnamese stock market anal
 
 - Python 3.10.11
 - OpenAI API key
+- Vnstock API key (optional, for premium data access — get one at https://vnstocks.com)
 
 ## Installation
 
@@ -36,36 +37,40 @@ docker pull ghcr.io/gahoccode/finbro-gpt:latest
 **Mac/Linux:**
 
 ```bash
-# Run with volume mounting to persist charts
 docker run -d \
   --name finbro-gpt \
   -p 8501:8501 \
   -e OPENAI_API_KEY=your-openai-api-key \
+  -e VNSTOCK_API_KEY=your-vnstock-api-key \
   -v $(pwd)/exports:/app/exports \
+  -v $(pwd)/vnstock_cache:/app/.vnstock \
   ghcr.io/gahoccode/finbro-gpt:latest
 ```
 
 **Windows (Command Prompt):**
 
 ```cmd
-REM Run with volume mounting to persist charts
+
 docker run -d ^
   --name finbro-gpt ^
   -p 8501:8501 ^
   -e OPENAI_API_KEY=your-openai-api-key ^
+  -e VNSTOCK_API_KEY=your-vnstock-api-key ^
   -v %cd%\exports:/app/exports ^
+  -v %cd%\vnstock_cache:/app/.vnstock ^
   ghcr.io/gahoccode/finbro-gpt:latest
 ```
 
 **Windows (PowerShell):**
 
 ```powershell
-# Run with volume mounting to persist charts
 docker run -d `
   --name finbro-gpt `
   -p 8501:8501 `
   -e OPENAI_API_KEY=your-openai-api-key `
+  -e VNSTOCK_API_KEY=your-vnstock-api-key `
   -v ${PWD}/exports:/app/exports `
+  -v ${PWD}/vnstock_cache:/app/.vnstock `
   ghcr.io/gahoccode/finbro-gpt:latest
 ```
 
@@ -98,7 +103,7 @@ docker rm finbro-gpt
 
    ```bash
    cp .env.example .env
-   # Edit .env with your OpenAI API key
+   # Edit .env with your OPENAI_API_KEY and (optionally) VNSTOCK_API_KEY
    ```
 
 3. Run with docker-compose:
@@ -201,6 +206,7 @@ Pre-built Docker images are automatically published to GitHub Container Registry
 ### Environment Variables
 
 - `OPENAI_API_KEY` - Required for AI functionality
+- `VNSTOCK_API_KEY` - Optional, for premium Vnstock data access
 - `OPENAI_MODEL` - Optional model selection (default: gpt-4o-mini)
 
 ## Development
